@@ -15,19 +15,19 @@ post '/form' do
   longitud = response.parsed_response['resultado']['y']
   coordenadas = longitud + ", "+ latitud  
   
-  session = GoogleDrive.login("contacto@lanestorvive.org", "soloyolase")
+  session = GoogleDrive.login("", "")
   tmpfile = params[:file][:tempfile]
   foto = session.upload_from_file(tmpfile, params[:file][:filename].to_s, :convert => false)
-  url_foto = "https://googledrive.com/host/0B98LKQ7xNbvTNlNnOEFqUHZ3T2s/" + foto.resource_id.gsub("file:", '')
+  url_foto = "https://googledrive.com/host/" + foto.resource_id.gsub("file:", '')
   root = session.root_collection
   collection = root.subcollection_by_title("FotosProblemasCiudad")
 	collection.add(foto)
 	root.remove(foto)
 
   ft = GData::Client::FusionTables.new      
-  ft.clientlogin('contacto@lanestorvive.org', 'soloyolase') 
-  ft.set_api_key('AIzaSyBbQFCNlmnjpwYtGKMOU6I522e0rP1XqZY') # obtained from the google api console
-  ft.execute "INSERT INTO 15nwq3vUOnMwxqnH8LSMVyWu3YsH0aIBck2b2No0 (tipoDeProblema, descripcion, direccion, coordenadas, fecha, urlMedia) VALUES ('#{params[:tipoDeProblema]}', '#{params[:descripcion]}', '#{params[:direccion]}', '" + coordenadas +  "', '#{params[:fecha]}', '"+ url_foto +"');"
+  ft.clientlogin('', '') 
+  ft.set_api_key('') # obtained from the google api console
+  ft.execute "INSERT INTO  (tipoDeProblema, descripcion, direccion, coordenadas, fecha, urlMedia) VALUES ('#{params[:tipoDeProblema]}', '#{params[:descripcion]}', '#{params[:direccion]}', '" + coordenadas +  "', '#{params[:fecha]}', '"+ url_foto +"');"
 
    erb :form
 end  
