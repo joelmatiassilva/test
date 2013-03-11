@@ -96,6 +96,7 @@ post '/form' do
 	        root.remove(foto)
           puts 'paso fotos'
 
+
           #fusion table
           ft = GData::Client::FusionTables.new      
           ft.clientlogin('', '') 
