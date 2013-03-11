@@ -98,8 +98,8 @@ post '/form' do
 
           #fusion table
           ft = GData::Client::FusionTables.new      
-          ft.clientlogin('', '') 
-          ft.set_api_key('') # obtained from the google api console
+          ft.clientlogin('contacto@lanestorvive.org', 'soloyolase') 
+          ft.set_api_key('AIzaSyBbQFCNlmnjpwYtGKMOU6I522e0rP1XqZY') # obtained from the google api console
           ft.execute "INSERT INTO 15nwq3vUOnMwxqnH8LSMVyWu3YsH0aIBck2b2No0 
           (tipoDeProblema, descripcion, direccion, coordenadas, fecha, urlMedia, email, urlVideo, habilitado) VALUES ('#{tipoDeProblema}', '#{descripcion}', '#{direccion}', '#{coordenadas}', '#{fecha}', '#{url_foto}', '#{email}', '#{video}', 0);"
           puts 'paso fusion tables'
